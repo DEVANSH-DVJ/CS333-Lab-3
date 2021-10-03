@@ -5,7 +5,7 @@
 
 int main(void) {
   // uint ret;
-  printf(1, "Start: virtual pages: %d, physical pages %d\n", numvp(), numpp());
+  printf(1, "Start: virtual pages: %d, physical pages: %d\n", numvp(), numpp());
 
   // ret = mmap(-1234);
   // if (ret == 0)
@@ -24,7 +24,7 @@ int main(void) {
   // if (ret == 0)
   //   printf(1, "mmap failed\n");
   // else {
-  //   printf(1, "After mmap one page: virtual pages: %d, physical pages %d\n",
+  //   printf(1, "After mmap one page: virtual pages: %d, physical pages: %d\n",
   //          numvp(), numpp());
 
   //   char *addr = (char *)ret;
@@ -32,7 +32,7 @@ int main(void) {
   //   addr[0] = 'a';
 
   //   printf(1,
-  //          "After access of one page: virtual pages: %d, physical pages %d\n",
+  //          "After access of one page: virtual pages: %d, physical pages: %d\n",
   //          numvp(), numpp());
   // }
 
@@ -41,7 +41,7 @@ int main(void) {
   // if (ret == 0)
   //   printf(1, "mmap failed\n");
   // else {
-  //   printf(1, "After mmap two pages: virtual pages: %d, physical pages %d\n",
+  //   printf(1, "After mmap two pages: virtual pages: %d, physical pages: %d\n",
   //          numvp(), numpp());
 
   //   char *addr = (char *)ret;
@@ -49,13 +49,13 @@ int main(void) {
   //   addr[0] = 'a';
 
   //   printf(1,
-  //          "After access of first page: virtual pages: %d, physical pages %d\n",
+  //          "After access of first page: virtual pages: %d, physical pages: %d\n",
   //          numvp(), numpp());
   //   addr[8000] = 'a';
 
   //   printf(
   //       1,
-  //       "After access of second page: virtual pages: %d, physical pages %d\n",
+  //       "After access of second page: virtual pages: %d, physical pages: %d\n",
   //       numvp(), numpp());
   // }
 
