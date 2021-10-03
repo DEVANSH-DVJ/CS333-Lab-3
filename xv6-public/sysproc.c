@@ -89,3 +89,15 @@ sys_uptime(void)
   release(&tickslock);
   return xticks;
 }
+
+int
+sys_numvp(void)
+{
+  return 0;
+}
+
+int
+sys_numpp(void)
+{
+  return 0;
+}
