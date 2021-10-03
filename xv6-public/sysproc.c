@@ -101,3 +101,9 @@ sys_numpp(void)
 {
   return numpp();
 }
+
+int
+sys_mmap(void)
+{
+  return 0;
+}
