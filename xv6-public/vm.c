@@ -392,3 +392,8 @@ copyout(pde_t *pgdir, uint va, void *p, uint len)
 //PAGEBREAK!
 // Blank page.
 
+int
+mmap_fault(pde_t *pgdir, uint va)
+{
+  return 0;
+}

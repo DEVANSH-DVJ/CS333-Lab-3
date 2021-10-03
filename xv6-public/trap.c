@@ -77,6 +77,13 @@ trap(struct trapframe *tf)
             cpuid(), tf->cs, tf->eip);
     lapiceoi();
     break;
+  case T_PGFLT:
+    if (myproc()->sz >= tf->eip) {
+      if (mmap_fault(myproc()->pgdir, PGROUNDDOWN(rcr2())) != 0) {
+        switchuvm(myproc());
+        break;
+      }
+    }
 
   //PAGEBREAK: 13
   default:
