@@ -5,7 +5,7 @@
 
 int main(void) {
   // uint ret;
-  // printf(1, "Start: virtual pages: %d, physical pages %d\n", numvp(), numpp());
+  printf(1, "Start: virtual pages: %d, physical pages %d\n", numvp(), numpp());
 
   // ret = mmap(-1234);
   // if (ret == 0)
