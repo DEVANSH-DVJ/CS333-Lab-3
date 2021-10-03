@@ -554,15 +554,13 @@ numpp(void)
   pde_t *pgtab;
   pte_t *pte;
 
-  for (uint i = 0; i < NPDENTRIES / 2; ++i) {
-    pde = &pgdir[i];
+  for (uint va = 0; va < KERNBASE /* or curproc->sz */; va += PGSIZE) {
+    pde = &pgdir[PDX(va)];
     if (*pde & PTE_P) {
       pgtab = (pte_t*)P2V(PTE_ADDR(*pde));
-      for (uint j = 0; j < NPTENTRIES; ++j) {
-        pte = &pgtab[j];
-        if (*pte & PTE_P) {
-          ++count;
-        }
+      pte = &pgtab[PTX(va)];
+      if (*pte & PTE_P) {
+        ++count;
       }
     }
   }
