@@ -569,3 +569,18 @@ numpp(void)
 
   return count;
 }
+
+int
+mmap(int n)
+{
+  struct proc *curproc = myproc();
+
+  if (curproc->sz + n >= KERNBASE)
+    return 0;
+
+  acquire(&ptable.lock);
+  curproc->sz += n;
+  release(&ptable.lock);
+
+  return curproc->sz - n + 1;
+}

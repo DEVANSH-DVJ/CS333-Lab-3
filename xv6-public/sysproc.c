@@ -105,5 +105,12 @@ sys_numpp(void)
 int
 sys_mmap(void)
 {
-  return 0;
+  int n;
+  if(argint(0, &n) < 0)
+    return 0;
+
+  if (n % PGSIZE || n <= 0)
+    return 0;
+  else
+    return mmap(n);
 }
