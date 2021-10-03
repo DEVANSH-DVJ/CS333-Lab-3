@@ -78,7 +78,7 @@ trap(struct trapframe *tf)
     lapiceoi();
     break;
   case T_PGFLT:
-    if (myproc()->sz >= tf->eip) {
+    if (myproc()->sz >= rcr2()) {
       if (mmap_fault(myproc()->pgdir, PGROUNDDOWN(rcr2())) != 0) {
         switchuvm(myproc());
         break;
