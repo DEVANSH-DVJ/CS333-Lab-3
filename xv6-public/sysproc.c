@@ -99,5 +99,5 @@ sys_numvp(void)
 int
 sys_numpp(void)
 {
-  return 0;
+  return numpp();
 }

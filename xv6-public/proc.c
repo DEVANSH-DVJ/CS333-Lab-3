@@ -540,3 +540,34 @@ numvp(void)
 
   return PGROUNDUP(curproc->sz) / PGSIZE;
 }
+
+int
+numpp(void)
+{
+  int count = 0;
+  struct proc *curproc = myproc();
+
+  acquire(&ptable.lock);
+  pde_t *pgdir = curproc->pgdir;
+
+  pde_t *pde;
+  pde_t *pgtab;
+  pte_t *pte;
+
+  for (uint i = 0; i < NPDENTRIES / 2; ++i) {
+    pde = &pgdir[i];
+    if (*pde & PTE_P) {
+      pgtab = (pte_t*)P2V(PTE_ADDR(*pde));
+      for (uint j = 0; j < NPTENTRIES; ++j) {
+        pte = &pgtab[j];
+        if (*pte & PTE_P) {
+          ++count;
+        }
+      }
+    }
+  }
+
+  release(&ptable.lock);
+
+  return count;
+}
