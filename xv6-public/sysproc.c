@@ -93,7 +93,7 @@ sys_uptime(void)
 int
 sys_numvp(void)
 {
-  return 0;
+  return numvp();
 }
 
 int

@@ -532,3 +532,11 @@ procdump(void)
     cprintf("\n");
   }
 }
+
+int
+numvp(void)
+{
+  struct proc *curproc = myproc();
+
+  return curproc->sz / PGSIZE;
+}
