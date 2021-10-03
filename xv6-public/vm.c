@@ -395,5 +395,19 @@ copyout(pde_t *pgdir, uint va, void *p, uint len)
 int
 mmap_fault(pde_t *pgdir, uint va)
 {
-  return 0;
+  char *mem;
+
+  mem = kalloc();
+  if(mem == 0){
+    cprintf("kalloc: out of memory\n");
+    return 0;
+  }
+  memset(mem, 0, PGSIZE);
+  if(mappages(pgdir, (char*)va, PGSIZE, V2P(mem), PTE_W|PTE_U) < 0){
+    cprintf("mappages: out of memory\n");
+    kfree(mem);
+    return 0;
+  }
+
+  return 1;
 }
