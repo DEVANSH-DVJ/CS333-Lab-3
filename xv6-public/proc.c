@@ -538,5 +538,5 @@ numvp(void)
 {
   struct proc *curproc = myproc();
 
-  return curproc->sz / PGSIZE;
+  return PGROUNDUP(curproc->sz) / PGSIZE;
 }
